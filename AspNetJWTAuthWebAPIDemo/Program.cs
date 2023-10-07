@@ -1,4 +1,5 @@
 using AspNetJWTAuthWebAPIDemo.Models;
+using AspNetJWTAuthWebAPIDemo.Services;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Cryptography;
 
@@ -9,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddSingleton<AuthenticationService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,7 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+// ================================================================
 
 app.MapGet("/secure", [Authorize] () => "This is a secure endpoint (Demo).");
 
@@ -42,11 +46,11 @@ app.MapGet("/GenerateJwtKey", (int? length) => {
 });
 
 
-app.MapPost("/auth", (UserLoginRequest userLoginRequest) =>
+app.MapPost("/auth", (UserLoginRequest userLoginRequest, AuthenticationService authService) =>
 {
 
     // Validate the username/password
-    var user = ValidateUserCredentials(
+    var user = authService.ValidateUserCredentials(
         userLoginRequest.Username,
         userLoginRequest.Password);
 
@@ -62,28 +66,7 @@ app.MapPost("/auth", (UserLoginRequest userLoginRequest) =>
 });
 
 
-UserProfile ValidateUserCredentials(string? userName, string? password)
-{
-    // ... existing code ...
-
-    return new UserProfile()
-    {
-        UserId = 1,
-        UserName = userName,
-        FirstName = "Peter",
-        LastName = "Smith",
-        Email = "peter.smith@example.net",
-        City = "Hamilton",
-        LastSignInAt = DateTime.UtcNow
-    };
-}
-
-
 app.UseHttpsRedirection();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
 
 app.Run();
 
