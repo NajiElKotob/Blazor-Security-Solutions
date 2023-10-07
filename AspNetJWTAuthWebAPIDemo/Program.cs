@@ -1,3 +1,4 @@
+using AspNetJWTAuthWebAPIDemo.Constants;
 using AspNetJWTAuthWebAPIDemo.Models;
 using AspNetJWTAuthWebAPIDemo.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -94,7 +95,7 @@ app.MapPost("/auth", (UserLoginRequest userLoginRequest,
 
     // Create a token
     var securityKey = new SymmetricSecurityKey(
-        Encoding.ASCII.GetBytes(configuration["JwtSettings:Key"]));
+        Encoding.ASCII.GetBytes(configuration[AuthConstants.JwtSettingsKey]));
     var signingCredentials = new SigningCredentials(
         securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -102,11 +103,11 @@ app.MapPost("/auth", (UserLoginRequest userLoginRequest,
     claimsForToken.Add(new Claim(JwtRegisteredClaimNames.Sub, user.UserId.ToString()));
     claimsForToken.Add(new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName));
     claimsForToken.Add(new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName));
-    claimsForToken.Add(new Claim("city", user.City));
+    claimsForToken.Add(new Claim(CustomClaimNames.City, user.City));
 
     var jwtSecurityToken = new JwtSecurityToken(
-        configuration["Authentication:Issuer"],
-        configuration["Authentication:Audience"],
+        configuration[AuthConstants.AuthenticationIssuer],
+        configuration[AuthConstants.AuthenticationAudience],
         claimsForToken,
         DateTime.UtcNow,
         DateTime.UtcNow.AddHours(1),
