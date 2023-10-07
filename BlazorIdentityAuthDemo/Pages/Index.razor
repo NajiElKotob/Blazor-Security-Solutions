@@ -1,5 +1,6 @@
 ﻿@page "/"
 
+
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
@@ -7,3 +8,13 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+<!-- Conditionally display content -->
+<AuthorizeView>
+    <Authorized>
+        <!-- Content for authenticated users goes here -->
+    </Authorized>
+    <NotAuthorized>
+        <NavLink href="/Identity/Account/Login">Please login</NavLink>
+    </NotAuthorized>
+</AuthorizeView>
