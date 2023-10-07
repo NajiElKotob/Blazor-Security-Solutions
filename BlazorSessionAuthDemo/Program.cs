@@ -24,6 +24,17 @@ builder.Services.AddSession(options =>
 
     // Mark the cookie as essential, so it won't be blocked by cookie consent functionality
     options.Cookie.IsEssential = true;
+
+    //Make sure the session cookie is sent over HTTPS only.
+    //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+
+    //Use the SameSite property to control when cookies are sent to the server. This can prevent cross-site request forgery attacks.
+    //options.Cookie.SameSite = SameSiteMode.Strict;
+
+
+    //Change the default session cookie name to something less obvious.
+    options.Cookie.Name = "BlazorSessionAuthDemoSessionKey";
+
 });
 
 
