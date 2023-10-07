@@ -6,8 +6,6 @@ namespace AspNetJWTAuthWebAPIDemo.Services
     {
      public UserProfile ValidateUserCredentials(string? userName, string? password)
         {
-            // ... existing code ...
-
             return new UserProfile()
             {
                 UserId = 1,

@@ -4,8 +4,22 @@ https://jwt.io/
 
 
 Required Packages
-- Microsoft.AspNetCore.Authentication.JwtBearer
 - Microsoft.IdentityModel.Tokens
+- Microsoft.AspNetCore.Authentication.JwtBearer
+
 
 Configuration
 Add your JWT settings to the appsettings.json
+
+
+Models
+- UserLoginRequest
+- UserProfile
+
+Services + DI
+- AuthenticationService
+	- ValidateUserCredentials
+
+Troubleshooting
+- Update-Package System.IdentityModel.Tokens.Jwt
+
