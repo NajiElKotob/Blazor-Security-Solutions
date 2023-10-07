@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+// Session
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<SessionService>();
 
@@ -15,10 +16,16 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
+    // Set the timeout for the session to 1 minute after which the session expires if there's no activity
     options.IdleTimeout = TimeSpan.FromMinutes(1);
+
+    // Ensure the cookie is accessible only by the server (prevents client-side scripts from accessing the cookie)
     options.Cookie.HttpOnly = true;
+
+    // Mark the cookie as essential, so it won't be blocked by cookie consent functionality
     options.Cookie.IsEssential = true;
 });
+
 
 
 var app = builder.Build();
