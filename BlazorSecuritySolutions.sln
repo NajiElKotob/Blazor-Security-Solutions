@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorSessionAuthDemo", "BlazorSessionAuthDemo\BlazorSessionAuthDemo.csproj", "{68105DA1-C42C-4985-88F0-46E6CACE6C81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSessionAuthDemo", "BlazorSessionAuthDemo\BlazorSessionAuthDemo.csproj", "{68105DA1-C42C-4985-88F0-46E6CACE6C81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorIdentityAuthDemo", "BlazorIdentityAuthDemo\BlazorIdentityAuthDemo.csproj", "{9EBB6BB3-C8C0-4472-B659-21E20243AB76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorIdentityAuthDemo", "BlazorIdentityAuthDemo\BlazorIdentityAuthDemo.csproj", "{9EBB6BB3-C8C0-4472-B659-21E20243AB76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetJWTAuthWebAPIDemo", "AspNetJWTAuthWebAPIDemo\AspNetJWTAuthWebAPIDemo.csproj", "{87B8D2CB-3068-4720-8D05-DDEAA912D7A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{9EBB6BB3-C8C0-4472-B659-21E20243AB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EBB6BB3-C8C0-4472-B659-21E20243AB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EBB6BB3-C8C0-4472-B659-21E20243AB76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B8D2CB-3068-4720-8D05-DDEAA912D7A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B8D2CB-3068-4720-8D05-DDEAA912D7A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B8D2CB-3068-4720-8D05-DDEAA912D7A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B8D2CB-3068-4720-8D05-DDEAA912D7A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
