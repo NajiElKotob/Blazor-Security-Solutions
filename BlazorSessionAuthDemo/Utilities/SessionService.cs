@@ -19,4 +19,13 @@ public class SessionService
         return _httpContextAccessor.HttpContext.Session.GetString(key);
     }
 
+    public void Remove(string key)
+    {
+        _httpContextAccessor.HttpContext.Session.Remove(key);
+    }
+
+    public void Clear()
+    {
+        _httpContextAccessor.HttpContext.Session.Clear();
+    }
 }

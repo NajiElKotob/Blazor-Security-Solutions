@@ -1,0 +1,26 @@
+﻿@page "/logout"
+@using BlazorSessionAuthDemo.Utilities
+@inject NavigationManager NavigationManager
+@inject SessionService SessionService
+
+<h3>Logout</h3>
+
+<p>You have been logged out. Thank you for using our application.</p>
+
+<button @onclick="GoToLogin">Return to Login</button>
+
+@code {
+    protected override void OnInitialized()
+    {
+        // Clear the session and authentication-related data
+        SessionService.Remove("IsAuthenticated");
+        SessionService.Clear();
+
+        // Optionally, you could add a delay or some logic before auto-redirecting them to a different page.
+    }
+
+    private void GoToLogin()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+}
