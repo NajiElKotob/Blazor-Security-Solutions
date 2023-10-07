@@ -9,3 +9,7 @@ User Registration: Allows new users to create accounts.
 - Security Features: This can include features like two-factor authentication, account lockout after a certain number of failed login attempts, and more.
 
 In essence, a membership system provides the tools and mechanisms required to manage users and their interactions with a web application securely. ASP.NET Core Identity, which we mentioned earlier, is an example of such a system for .NET-based web applications.
+
+
+Customising ASP.Net Identity in Blazor server side
+https://mvc.tech/blog/blazoridentityuser/
