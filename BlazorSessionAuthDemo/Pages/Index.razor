@@ -1,0 +1,41 @@
+﻿@page "/"
+@inject SessionService SessionService
+@inject NavigationManager NavigationManager
+
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+
+@if (!IsAuthenticated)
+{
+    <p>
+        <a href="/login">
+            Redirecting to login...
+        </a>
+    </p>
+}
+else
+{
+
+}
+
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+
+    {
+        if (!IsAuthenticated)
+        {
+            NavigationManager.NavigateTo("/login", true);
+        }
+    }
+
+    bool IsAuthenticated => SessionService.GetString("IsAuthenticated") == "true";
+}

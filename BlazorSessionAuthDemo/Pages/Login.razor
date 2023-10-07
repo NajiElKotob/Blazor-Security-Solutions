@@ -1,0 +1,43 @@
+﻿@page "/login"
+@using BlazorSessionAuthDemo.Utilities
+@inject NavigationManager NavigationManager
+@inject SessionService SessionService
+
+<h3>Login</h3>
+
+<EditForm Model="LoginModel" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="username" @bind-Value="LoginModel.Username" placeholder="Username" />
+    <InputText type="password" id="password" @bind-Value="LoginModel.Password" placeholder="Password" />
+
+    <button type="submit">Login</button>
+</EditForm>
+<p>@errorMessage</p>
+
+@code {
+    private LoginViewModel LoginModel = new LoginViewModel();
+    private string errorMessage = "";
+
+    private void HandleLogin()
+    {
+        // Here, I'm using hardcoded credentials for simplicity.
+        // In real scenarios, verify credentials against a data source.
+        if (LoginModel.Username == "admin" && LoginModel.Password == "admin")
+        {
+            SessionService.SetString("IsAuthenticated", "true");
+            NavigationManager.NavigateTo("/", true); //forceLoad = true: This will cause a full page refresh, giving the session a chance to be established before starting a new SignalR connection.
+        }
+        else
+        {
+            errorMessage = "Invalid login attempt.";
+        }
+    }
+
+    private class LoginViewModel
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
+}
